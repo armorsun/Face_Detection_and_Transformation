@@ -7,7 +7,7 @@ client = boto3.client(
     region_name='YOUR_REGION_NAME'
 )
 
-p = open("f1.jpg", 'rb')
+p = open("f2.jpg", 'rb')
 
 face_features = client.detect_faces(Image={
     'Bytes': bytearray(p.read())
