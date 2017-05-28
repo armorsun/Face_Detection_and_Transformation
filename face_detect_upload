@@ -1,0 +1,16 @@
+#!/bin/bash
+face_image_name=(f1 f2)
+
+for i in ${face_image_name[@]}; do
+	curl -X POST "https://api-us.faceplusplus.com/facepp/v3/detect" \
+	-F "api_key=YOUR_API_KEY" \
+	-F "api_secret=YOUR_SECRET_API_KEY" \
+	-F "image_file=@$i.jpg" \
+	-F "return_landmark=1" \
+	-F "return_attributes=gender,age" \
+	> face_detection_result/$i.json
+done
+
+python plot_face.py ${face_image_name[@]}
+
+exit 0
